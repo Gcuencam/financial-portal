@@ -10,6 +10,9 @@ import createLogger from 'redux-logger'
 // Components
 import { AppComponent } from './app.component';
 
+//9facef2e-9583-4a83-9f08-c87159f1c113
+//6ed070c1-b334-4612-8fa8-169c5e45baef
+
 // Pages
 import { SymbolsComponent } from './pages/symbols/symbols.component';
 
@@ -18,17 +21,27 @@ import { routing }  from './app.routing';
 
 // Reducers
 import reducer from './reducers';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
+// Extras
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { ChartsModule } from 'ng2-charts';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SymbolsComponent
+    SymbolsComponent,
+    SidebarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    Ng2SmartTableModule,
+    ChartsModule
   ],
   providers: [
     NgRedux
