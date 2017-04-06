@@ -1,3 +1,25 @@
-<p>
-  symbols works!
-</p>
+<div class="data_box">
+  <div class="col-md-12">
+    <div class="box margin_top_box margin_left_box margin_bottom_box margin_right_box"><ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table></div>
+  </div>
+  <div class="col-md-3 margin_top_box margin_left_box">
+    <div class="box">
+      <canvas  baseChart
+               [data]="symbolsCurrencyChartData"
+               [labels]="symbolsCurrencyChart"
+               [chartType]="symbolsCurrencyChartType"
+               (chartHover)="chartHovered($event)"
+               (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="col-md-3 margin_top_box margin_left_box">
+    <div class="box">
+      <canvas  baseChart
+               [data]="symbolsRiskChartData"
+               [labels]="symbolsRiskChart"
+               [chartType]="symbolsRiskChartType"
+               (chartHover)="chartHovered($event)"
+               (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
