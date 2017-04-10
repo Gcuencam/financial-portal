@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { symbol } from './symbol.reducer';
+import { symbols } from './symbols.reducer';
 
 export default combineReducers({
-  symbol
+  symbols: symbols
 });

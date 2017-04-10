@@ -1,0 +1,35 @@
+<div class="symbol_data_box">
+  <div class="row">
+    <div class="col-xs-12">
+      <app-header></app-header>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="margin_top_box margin_left_box margin_bottom_box margin_right_box box">
+      <div class="col-xs-6">
+        <p><span>Nombre: </span><span>{{ symbol.name }}</span></p>
+        <p><span>Divisa: </span><span>{{ symbol.currency.name }}</span></p>
+        <p><span>Emisor: </span><span>{{ symbol.issuer.name }}</span></p>
+        <p><span>ISIN: </span><span>{{ symbol.isin }}</span></p>
+      </div>
+      <div class="col-xs-6">
+        <p><span>Región: </span><span>{{ symbol.name }}</span></p>
+        <p><span>Familia de riesgo: </span><span>{{ symbol.name }}</span></p>
+        <p><span>Sector: </span><span>{{ symbol.name }}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="margin_top_box margin_left_box margin_bottom_box margin_right_box box">
+      <canvas baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>

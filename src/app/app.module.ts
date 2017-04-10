@@ -23,18 +23,26 @@ import { routing }  from './app.routing';
 import reducer from './reducers';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
+// Services
+import { AjaxService } from './services/ajax.service';
+
 // Extras
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ChartsModule } from 'ng2-charts';
 import { HeaderComponent } from './components/header/header.component';
+import { SymbolComponent } from './pages/symbol/symbol.component';
+import { CustomRenderComponent } from './components/custom-render-component/custom-render-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SymbolsComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    SymbolComponent,
+    CustomRenderComponent
   ],
+  entryComponents: [CustomRenderComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -44,7 +52,8 @@ import { HeaderComponent } from './components/header/header.component';
     ChartsModule
   ],
   providers: [
-    NgRedux
+    NgRedux,
+    AjaxService
   ],
   bootstrap: [AppComponent]
 })

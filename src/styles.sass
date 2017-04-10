@@ -3,18 +3,80 @@
 
 html
   margin: 0px
-  height: 100vh
+  height: 100%
 
 body
   background-color: $color-secondary-1!important
-  height: 100vh
   font-family: 'Roboto Condensed', sans-serif !important
+  height: 100%
+
+.ng2-smart-sort-link
+  font-size: 0.85em!important
+  font-weight: lighter
 
 table tr th
-  font-size: 18px!important
+  font-size: 0.75em!important
+  font-weight: lighter
 
 table tr td
-  font-size: 16px!important
+  font-size: 0.75em!important
+  font-weight: lighter
 
 table a, table span, table div, table p
   font-family: 'Roboto Condensed', sans-serif !important
+
+p, span
+  font-size: 1em!important
+
+.box
+  border: 3px solid #fff
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+  padding: 10px
+
+.margin_top_box
+  margin-top: 30px
+
+.margin_bottom_box
+  margin-bottom: 30px
+
+.sidebar
+  background-color: $color-primary-3
+
+@media (max-width: 768px)
+  .hidden_xs
+    display: none
+
+//@media (min-width: 768px)
+
+@media (min-width: 992px)
+
+  p, span
+    font-size: 1.15em!important
+
+  .margin_left_box
+    margin-left: 30px
+
+  .margin_right_box
+    margin-right: 30px
+
+  .ng2-smart-sort-link
+    font-size: 1.15em!important
+
+  table tr th
+    font-size: 1.05em!important
+
+  table tr td
+    font-size: 1.05em!important
+
+  .sidebar
+    position: fixed!important
+    top: 0
+    left: 0
+    bottom: 0
+    z-index: 1000
+    display: block
+
+//@media (min-width: 1200px)
+

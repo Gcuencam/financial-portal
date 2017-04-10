@@ -1,19 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { SymbolActions } from '../../actions/symbol.actions';
+import {select} from "ng2-redux";
+import {Observable} from "rxjs";
+import { LocalDataSource } from 'ng2-smart-table';
+import {BaseChartDirective} from "ng2-charts";
+import {CustomRenderComponent} from "../../components/custom-render-component/custom-render-component.component";
 
 @Component({
   selector: 'app-symbols',
   templateUrl: './symbols.component.html',
-  styleUrls: ['./symbols.component.sass']
+  styleUrls: ['./symbols.component.sass'],
+  providers: [SymbolActions]
 })
 export class SymbolsComponent implements OnInit {
+
+  @select() symbols: Observable<any>;
+
+  private doughnutChartColours: any[] = [{
+    backgroundColor: [
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56"
+    ],
+    hoverBackgroundColor: [
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56"
+    ]
+  }];
+
+  private doughnutChartCurrencyOptions = {
+    title: {
+      display: true,
+      text: 'Currency'
+    }
+  };
+
+  private doughnutChartRiskOptions = {
+    title: {
+      display: true,
+      text: 'Risk Family'
+    }
+  };
 
   private settings = {
     columns: {
       id: {
         title: 'ID',
-        class: 'th_column_table',
-        type: 'html',
-        valuePrepareFunction: (cell,row) => {return '<a href="' + cell + '">' + cell + '</a>'}
+        type: 'custom',
+        renderComponent: CustomRenderComponent,
       },
       name: {
         title: 'Name'
@@ -32,68 +67,10 @@ export class SymbolsComponent implements OnInit {
     },
     hideSubHeader: true
   };
-  private data = [
-    {
-      "id": 2,
-      "name": "Jpmorgan Investment Funds - Global Macro Opportunities Fund A Acc",
-      "currency": "EUR",
-      "risk_family": "Balanced",
-    },
-    {
-      "id": 2,
-      "name": "Allianz Fondsvorsorge 1977-1996 A Acc",
-      "currency": "EUR",
-      "risk_family": "Balanced"
-    },
-    {
-      "id": 2,
-      "name": "JB MP Konwave Gold Equity Fund B Acc",
-      "currency": "USD",
-      "risk_family": "Equity"
-    },
-    {
-      "id": 2,
-      "name": "Invesco Pan European Structured Equity Fund A Acc",
-      "currency": "EUR",
-      "risk_family": "Equity"
-    },
-    {
-      "id": 2,
-      "name": "Invesco Pan European High Income Fund E Acc",
-      "currency": "EUR",
-      "risk_family": "Balanced"
-    },
-    {
-      "id": 2,
-      "name": "Henderson Horizon Pan European Property Equities Fund A2 Acc",
-      "currency": "JPY",
-      "risk_family": "Equity"
-    },
-    {
-      "id": 2,
-      "name": "Carmignac Patrimoine A Acc",
-      "currency": "EUR",
-      "risk_family": "Balanced"
-    },
-    {
-      "id": 2,
-      "name": "Global Stable Equity Fund BI Acc",
-      "currency": "EUR",
-      "risk_family": "Equity"
-    },
-    {
-      "id": 2,
-      "name": "Stable Return Fund BP Acc",
-      "currency": "JPY",
-      "risk_family": "Balanced"
-    },
-    {
-      "id": 2,
-      "name": "Janus Global Life Sciences Fund I (acc.) Acc",
-      "currency": "USD",
-      "risk_family": "Equity"
-    }
-  ];
+
+
+  private symbolList: LocalDataSource;
+  private symbolArrayList: Array<any>;
 
   public symbolsCurrencyChart:string[] = ['USD', 'JPY', 'EUR'];
   public symbolsCurrencyChartData:number[] = [];
@@ -103,33 +80,35 @@ export class SymbolsComponent implements OnInit {
   public symbolsRiskChartData:number[] = [];
   public symbolsRiskChartType:string = 'doughnut';
 
-  constructor() { }
+  constructor(private symbolActions: SymbolActions) {
+    this.symbolActions._fetch();
+    this.symbols.subscribe(symbols => {
+      const {symbolsList, symbol} = symbols.toJS();
+      this.symbolList = new LocalDataSource(symbolsList);
+      this.symbolArrayList = symbolsList;
+      if(this.symbolArrayList.length > 0){
+        this.getCurrencyLength();
+        this.getRiskLength();
+      }
+    });
+
+  }
 
   ngOnInit() {
-    this.getCurrencyLength();
-    this.getRiskLength();
+
   }
 
-  // events
-  public chartClicked(e:any):void {
-    //console.log(e);
-  }
+ private getCurrencyLength() {
 
-  public chartHovered(e:any):void {
-    //console.log(e);
-  }
-
-  private getCurrencyLength() {
-
-    let symbolsUSD = this.data.filter(symbol =>{
+    let symbolsUSD = this.symbolArrayList.filter(symbol =>{
       return symbol.currency == "USD";
     });
 
-    let symbolsJPY = this.data.filter(symbol =>{
+    let symbolsJPY = this.symbolArrayList.filter(symbol =>{
       return symbol.currency == "JPY";
     });
 
-    let symbolsEUR = this.data.filter(symbol =>{
+    let symbolsEUR = this.symbolArrayList.filter(symbol =>{
       return symbol.currency == "EUR";
     });
 
@@ -140,13 +119,17 @@ export class SymbolsComponent implements OnInit {
     this.symbolsCurrencyChartData = [lengthUSD, lengthJPY, lengthEUR];
   }
 
+  /**
+   * private getRiskLength - description
+   *
+   */
   private getRiskLength() {
 
-    let symbolsEquity = this.data.filter(symbol =>{
+    let symbolsEquity = this.symbolArrayList.filter(symbol =>{
       return symbol.risk_family == "Equity";
     });
 
-    let symbolsBalanced = this.data.filter(symbol =>{
+    let symbolsBalanced = this.symbolArrayList.filter(symbol =>{
       return symbol.risk_family == "Balanced";
     });
 
@@ -155,9 +138,4 @@ export class SymbolsComponent implements OnInit {
 
     this.symbolsRiskChartData = [lengthEquity, lengthBalanced];
   }
-
-  private prepareHTML() {
-   return '<a href="value"></a>';
-  }
-
 }

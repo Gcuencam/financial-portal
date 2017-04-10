@@ -1,13 +1,14 @@
 @import "../../../assets/variables"
 
 .sidebar_content
-  height: 100vh
-  background-color: $color-primary-3
   color: $color-secondary-1
   h1
     text-align: center
     border-bottom: 1px solid $color-secondary-3
     padding: 10px 0px 20px 0px
+    a
+      text-decoration: none
+      color: $color-secondary-1
   .sidebar_profile
     margin: 25px 0px
     .img_circle
@@ -26,3 +27,32 @@
       padding-left: 10px
       font-size: 1.5em
       font-weight: lighter
+  .menu
+    margin-top: 60px
+    div
+      padding: 0px!important
+      ul
+        padding: 10px 0px
+        font-size: 1.3em
+        text-decoration: none
+        list-style: none
+        li
+          border-bottom: 1px solid $color-secondary-3
+          padding: 10px 20px
+          transition: all 0.5s ease
+          text-decoration: none
+          color: $color-secondary-1
+          outline: none !important
+        li:first-of-type
+            border-top: 1px solid $color-secondary-3
+        li:hover
+          background-color:  lighten($color-primary-3,10%)
+          cursor: pointer
+          padding-left: 40px
+
+
+//@media (min-width: 768px)
+
+//@media (min-width: 992px)
+
+//@media (min-width: 1200px)

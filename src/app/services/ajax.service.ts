@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
-
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,45 +9,31 @@ import 'rxjs/add/operator/toPromise';
 export class AjaxService {
 
   private urlBase: string;
+  private result;
 
   constructor(public http: Http) {
     this.urlBase = environment.api.url;
   }
 
   buildUrl(endpoint) {
+
     if (endpoint.param) {
       return this.urlBase + endpoint.id + '/' + endpoint.param;
     }
 
     return this.urlBase + endpoint;
+
   }
 
-  /**
-   * Request method
-   * @param  {string}                 method
-   * @param  {string | Object}        endpoint   Could be an string or an object (if composed url)
-   * @param  {any}                    data
-   * @param  {Object}                 options
-   * @return {Promise<any>}           Request response
-   */
-  request(method: string, endpoint, data?, options?: Object): Promise<any> {
+  getRequest(endpoint) {
 
-    const url = this.buildUrl(endpoint);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('JsonStub-User-Key', '9facef2e-9583-4a83-9f08-c87159f1c113');
+    headers.append('JsonStub-Project-Key', '6ed070c1-b334-4612-8fa8-169c5e45baef');
 
-    return this.http[method](url, data, options)
-        .toPromise()
-        .then(response => response.json());
+    return this.http.get(this.buildUrl(endpoint), {headers: headers});
+
   }
 
-  get(endpoint): Promise<any> {
-    return this.request('get', endpoint);
-  }
 
-  post(endpoint, data: Object): Promise<any> {
-    return this.request('post', endpoint, data);
-  }
-
-  put(endpoint, data: Object): Promise<any> {
-    return this.request('put', endpoint, data);
-  }
 }
