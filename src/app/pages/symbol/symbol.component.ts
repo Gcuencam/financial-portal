@@ -18,6 +18,7 @@ export class SymbolComponent implements OnInit {
   private symbol;
   private comment: String;
   private comments: Array<Comment>;
+  public loading: Boolean;
 
   public lineChartData: Array<any> = [
     { data: [], label: 'Precio' },
@@ -53,15 +54,18 @@ export class SymbolComponent implements OnInit {
       if (symbol.prices.length > 0) {
         this.prepareChart(symbol.prices);
         this.comments = this.symbolActions.getComments(this.symbol);
+        this.loading = !this.loading;
       }
     });
     this.comment = "";
   }
 
   ngOnInit() {
+    this.loading = false;
     this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.getDetailData(this.id);
+      this.loading = !this.loading;
     });
     if (this.symbolsList.length == 0) {
       this.symbolActions._fetch();

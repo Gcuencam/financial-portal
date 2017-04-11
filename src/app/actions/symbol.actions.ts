@@ -55,7 +55,6 @@ export class SymbolActions {
   }
 
   removeComment(commentId) {
-    alert(commentId)
     let comments = this.localStorageService.get<Array<any>>('comments');
     console.log(comments)
     comments = comments.filter(function(_comment) {
