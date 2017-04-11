@@ -46,7 +46,7 @@
           &.symbol_item
             color: darken($color-secondary-1, 20%)
             font-size: 0.85em
-          &.active
+          &.active.symbol_item
             color: $color-primary-3
             background-color: $color-secondary-1
         li:first-of-type
@@ -55,6 +55,12 @@
           background-color:  lighten($color-primary-3,10%)
           cursor: pointer
           padding-left: 40px
+  .icofont-navigation-menu
+    position: absolute
+    top: 23px
+    right: 25px
+    transition: all 0.5s ease
+    font-size: 1.2em
 
   .extra_controllers
     background-color:  lighten($color-primary-3,10%)
@@ -68,6 +74,12 @@
       &:hover
         cursor: pointer
         color: $color-primary-3
+
+.dropdown
+  display: none
+  transition: all 0.5s ease
+  &.open
+    display: inline-block
 
 //@media (min-width: 768px)
 

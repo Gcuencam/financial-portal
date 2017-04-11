@@ -7,12 +7,18 @@ import { Component, OnInit, Input  } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  public opened: Boolean;
+
   @Input() symbols: Array<any>;
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  public toggleSymbols() {
+      this.opened = !this.opened;
   }
 
 }

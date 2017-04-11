@@ -20,5 +20,33 @@ p
 textarea
   width: 100%
   display: inline-block
+  resize: none
   button
     display: inline-block
+
+.textarea_comment
+  padding-top: 20px
+
+.comment
+  padding: 20px 20px 20px 20px
+  &:first-of-type
+    margin-top: 20px
+  &:nth-child(odd)
+    background-color:  lighten($color-primary-3,74%)
+  &:nth-child(even)
+  textarea
+    background-color: rgba(0,0,0,0)
+    padding: 10px 20px
+    border: none
+    cursor: pointer
+    transition: all 0.5s ease
+    &:hover
+      background-color:  lighten($color-primary-3,60%)
+  i
+    position: absolute
+    transition: all 0.5s ease
+    right: 40px
+    color: $color-primary-3
+    cursor: pointer
+    &:hover
+      color:  lighten($color-primary-3,30%)

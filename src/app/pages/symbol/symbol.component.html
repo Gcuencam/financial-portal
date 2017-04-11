@@ -22,9 +22,13 @@
   <div class="col-md-12">
     <div class="margin_bottom_box margin_right_box box col-xs-12">
       <div class="col-xs-12">
-        <div *ngFor="let comment of comments">{{comment._comment}} {{comment._fecha}} {{comment._hora}}</div>
+        <div *ngFor="let comment of comments" class="comment">
+          <i class="icofont icofont-ui-close" (click)="deleteComment(comment._id)"></i>
+          <p><span>Fecha: </span><span>{{comment._fecha}}</span></p>
+          <p><span>Hora: </span><span>{{comment._hora}}</span></p>
+          <textarea disabled="disabled" value="{{comment._comment}}"></textarea>
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-12" class="textarea_comment">
         <textarea [(ngModel)]="comment" placeholder="Introduzca aquí su comentario." rows="5"></textarea>
       </div>
       <div class="col-xs-12">

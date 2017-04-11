@@ -22,10 +22,13 @@
   <div class="row menu">
     <div class="col-xs-12">
       <ul>
+        <i class="icofont icofont-navigation-menu" (click)="toggleSymbols()"></i>
         <li routerLink="/symbols" routerLinkActive="active">Symbols</li>
-        <li *ngFor="let symbol of symbols" routerLink="/symbol/{{symbol.id}}" routerLinkActive="active" class="symbol_item">
-          {{symbol.name}}
-        </li>
+        <div class="dropdown" [ngClass]="{'open': opened}">
+          <li *ngFor="let symbol of symbols" routerLink="/symbol/{{symbol.id}}" routerLinkActive="active" class="symbol_item">
+            {{symbol.name}}
+          </li>
+        </div>
       </ul>
     </div>
   </div>

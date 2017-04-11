@@ -155,4 +155,9 @@ export class SymbolComponent implements OnInit {
 
   }
 
+  public deleteComment(commentId) {
+    this.symbolActions.removeComment(commentId);
+    this.comments = this.symbolActions.getComments(this.symbol);
+  }
+
 }

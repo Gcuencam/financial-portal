@@ -45,23 +45,24 @@ export class SymbolActions {
   }
 
   getComments(symbol) {
-    console.log("HOLAAA")
-    console.log(symbol)
     let comments = this.localStorageService.get<Array<any>>('comments');
     if (comments == null) {
       return [];
     }
     return comments.filter(function(comment) {
-      console.log(comment)
       return comment._symbolId == symbol.id;
     });
   }
 
-  removeComment(comment, symbol) {
-    symbol.comments = symbol.comments.filter(function(_comment) {
-      return _comment.id !== comment.id;
+  removeComment(commentId) {
+    alert(commentId)
+    let comments = this.localStorageService.get<Array<any>>('comments');
+    console.log(comments)
+    comments = comments.filter(function(_comment) {
+      return _comment._id !== commentId;
     });
-    this.setSymbol(symbol);
+    console.log(comments)
+    this.localStorageService.set('comments', comments);
   }
 
 }
