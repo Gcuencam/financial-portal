@@ -85,7 +85,7 @@ export class SymbolComponent implements OnInit {
    * @param  {} _symbol description
    */
   private setData(_symbol) {
-    _symbol.regionForm = this.formRegion(_symbol.region);
+    _symbol.regionForm =  this.formRegion(_symbol.region);
     _symbol.riskFamilyForm = this.formRiskFamily(_symbol.risk_family);
     _symbol.sectorForm = this.formSector(_symbol.sector);
     this.symbolActions.setSymbol(_symbol);
@@ -95,27 +95,39 @@ export class SymbolComponent implements OnInit {
    * private formRegion - Formats the region.
    *
    * @param  {} region description
+   * @return {string}
    */
   private formRegion(region) {
-
+      return region['name'] + "/" + region['region_level2']['name'] + "/" + region['region_level2']['region_level3']['name'];
   }
 
   /**
    * private formRiskFamily - Formats the risk family.
    *
    * @param  {} riskFamily description
+   * @return {string}
    */
   private formRiskFamily(riskFamily) {
-
+    return riskFamily['name'] + "/" + riskFamily['sub_family']['name'];
   }
 
   /**
    * private formSector - Formats the sector.
    *
    * @param  {} sector description
+   * @return {string}
    */
   private formSector(sector) {
-
+    if(sector) {
+      if(sector.hasOwnProperty('sector_level2') && sector['sector_level2'] !== null){
+        if(sector['sector_level2'].hasOwnProperty('sector_level3') && sector['sector_level2']['sector_level3'] !== null) {
+          return sector['name'] + "/" + sector['sector_level2']['name'] + "/" + sector['sector_level2']['sector_level3']['name'];
+        }
+        return sector['name'] + "/" + sector['sector_level2']['name'];
+      }
+      return sector['name'];
+    }
+    return "No sector";
   }
 
   public chartClicked(e: any): void {
