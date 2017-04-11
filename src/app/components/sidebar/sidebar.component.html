@@ -1,4 +1,9 @@
 <div class="col-xs-12 sidebar_content">
+    <div class="row extra_controllers">
+        <i class="icofont icofont-ui-settings"></i>
+        <i class="icofont icofont-ui-user"></i>
+        <i class="icofont icofont-ui-message"></i>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <h1><a routerLink="/">Financial portal</a></h1>
@@ -17,7 +22,10 @@
     <div class="row menu">
         <div class="col-xs-12">
             <ul>
-                <li routerLink="/">Symbols</li>
+                <li routerLink="/symbols" routerLinkActive="active">Symbols</li>
+                <li *ngFor="let symbol of symbols" routerLink="/symbol/{{symbol.id}}" routerLinkActive="active" class="symbol_item">
+                    {{symbol.name}}
+                </li>
             </ul>
         </div>
     </div>

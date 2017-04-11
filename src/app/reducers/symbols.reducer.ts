@@ -30,6 +30,7 @@ export function symbols(
     SET_SYMBOL() {
       const symbol = Immutable.fromJS(action.payload);
       const newState = state.set('symbol', symbol);
+      console.log(newState);
       return newState;
     },
 

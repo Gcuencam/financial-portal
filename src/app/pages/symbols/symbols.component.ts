@@ -81,7 +81,6 @@ export class SymbolsComponent implements OnInit {
   public symbolsRiskChartType:string = 'doughnut';
 
   constructor(private symbolActions: SymbolActions) {
-    this.symbolActions._fetch();
     this.symbols.subscribe(symbols => {
       const {symbolsList, symbol} = symbols.toJS();
       this.symbolList = new LocalDataSource(symbolsList);

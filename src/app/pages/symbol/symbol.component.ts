@@ -3,6 +3,8 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {SymbolActions} from "../../actions/symbol.actions";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
+import {CommentSymbol} from "../../classes/comment";
+
 
 @Component({
   selector: 'app-symbol',
@@ -14,16 +16,23 @@ export class SymbolComponent implements OnInit {
 
   private id;
   private symbol;
+  private comment;
+  private comments = [];
+
+  private symbolsList = [];
   @select() symbols: Observable<any>;
 
   constructor(private route: ActivatedRoute, private symbolActions: SymbolActions) {
     this.symbols.subscribe(symbols => {
       const {symbolsList, symbol} = symbols.toJS();
         this.symbol = symbol;
+        this.symbolsList = symbolsList;
         if(symbol.prices.length > 0) {
           this.prepareChart(symbol.prices);
+          this.comments = this.symbolActions.getComments(this.symbol);
         }
     });
+    this.comment = "";
   }
 
   ngOnInit() {
@@ -31,6 +40,9 @@ export class SymbolComponent implements OnInit {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.getDetailData(this.id);
     });
+    if(this.symbolsList.length == 0) {
+      this.symbolActions._fetch();
+    }
   }
 
   private getDetailData(id){
@@ -82,8 +94,6 @@ export class SymbolComponent implements OnInit {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
-
-  // events
   public chartClicked(e:any):void {
     console.log(e);
   }
@@ -104,4 +114,12 @@ export class SymbolComponent implements OnInit {
     this.lineChartData[0].data = arrayData;
     this.lineChartLabels = arrayLabels;
   }
+
+  public sendComment() {
+    let comment = new CommentSymbol(this.symbol.id, new Date(), this.comment);
+    this.symbolActions.addComment(comment);
+    this.comments = this.symbolActions.getComments(this.symbol);
+
+  }
+
 }

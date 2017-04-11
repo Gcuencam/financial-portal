@@ -32,6 +32,7 @@ import { ChartsModule } from 'ng2-charts';
 import { HeaderComponent } from './components/header/header.component';
 import { SymbolComponent } from './pages/symbol/symbol.component';
 import { CustomRenderComponent } from './components/custom-render-component/custom-render-component.component';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,11 @@ import { CustomRenderComponent } from './components/custom-render-component/cust
     HttpModule,
     routing,
     Ng2SmartTableModule,
-    ChartsModule
+    ChartsModule,
+    LocalStorageModule.withConfig({
+      prefix: 'fp',
+      storageType: 'localStorage'
+    })
   ],
   providers: [
     NgRedux,
