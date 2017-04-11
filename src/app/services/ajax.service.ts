@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
+import { Observable } from "rxjs";
 
 
 @Injectable()
@@ -15,6 +16,12 @@ export class AjaxService {
     this.urlBase = environment.api.url;
   }
 
+  /**
+   * buildUrl - Build all the url with the base and the variable.
+   *
+   * @param  {string} endpoint
+   * @return {string}
+   */
   buildUrl(endpoint) {
 
     if (endpoint.param) {
@@ -25,7 +32,13 @@ export class AjaxService {
 
   }
 
-  getRequest(endpoint) {
+  /**
+   * getRequest - Generates ajax request.
+   *
+   * @param  {string} endpoint
+   * @return {Observable}
+   */
+  getRequest(endpoint): Observable<any> {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('JsonStub-User-Key', '9facef2e-9583-4a83-9f08-c87159f1c113');

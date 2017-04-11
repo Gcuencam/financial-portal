@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   @select() symbols: Observable<any>;
 
   private symbol;
-  private symbolList;
+  private symbolList: Array<any>;
 
   constructor(private symbolActions: SymbolActions) {
 

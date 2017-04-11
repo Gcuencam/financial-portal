@@ -14,10 +14,33 @@ import {CommentSymbol} from "../../classes/comment";
 })
 export class SymbolComponent implements OnInit {
 
-  private id;
+  private id: Number;
   private symbol;
-  private comment;
-  private comments = [];
+  private comment: String;
+  private comments: Array<Comment>;
+
+  public lineChartData: Array<any> = [
+    { data: [], label: 'Precio' },
+  ];
+  public lineChartLabels: Array<any> = [];
+  public lineChartOptions: any = {
+    responsive: true
+  };
+  public lineChartColors: Array<any> = [
+    {
+      backgroundColor: 'rgba(255,99,132,0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      pointBorderColor: "rgba(75,192,192,1)",
+      pointBackgroundColor: "rgba(75,192,192,1)",
+      pointRadius: 0,
+      pointHoverRadius: 6,
+      pointHoverBackgroundColor: "rgba(0,0,0,0.7)",
+      pointHoverBorderColor: "rgba(255,255,255,1)",
+      pointHoverBorderWidth: 3
+    }
+  ];
+  public lineChartLegend: boolean = true;
+  public lineChartType: string = 'line';
 
   private symbolsList = [];
   @select() symbols: Observable<any>;
@@ -45,12 +68,22 @@ export class SymbolComponent implements OnInit {
     }
   }
 
+  /**
+   * private getDetailData - Gets the symbol detail.
+   *
+   * @param  {Number} id description
+   */
   private getDetailData(id) {
     this.symbolActions._fetchDetail(id).subscribe(result =>
       this.setData(result.json())
     );
   }
 
+  /**
+   * private setData - Formats the data.
+   *
+   * @param  {} _symbol description
+   */
   private setData(_symbol) {
     _symbol.regionForm = this.formRegion(_symbol.region);
     _symbol.riskFamilyForm = this.formRiskFamily(_symbol.risk_family);
@@ -58,50 +91,46 @@ export class SymbolComponent implements OnInit {
     this.symbolActions.setSymbol(_symbol);
   }
 
+  /**
+   * private formRegion - Formats the region.
+   *
+   * @param  {} region description
+   */
   private formRegion(region) {
 
   }
 
+  /**
+   * private formRiskFamily - Formats the risk family.
+   *
+   * @param  {} riskFamily description
+   */
   private formRiskFamily(riskFamily) {
 
   }
 
+  /**
+   * private formSector - Formats the sector.
+   *
+   * @param  {} sector description
+   */
   private formSector(sector) {
 
   }
 
-  // lineChart
-  public lineChartData: Array<any> = [
-    { data: [], label: 'Precio' },
-  ];
-  public lineChartLabels: Array<any> = [];
-  public lineChartOptions: any = {
-    responsive: true
-  };
-  public lineChartColors: Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(255,99,132,0.2)',
-      borderColor: 'rgba(255,99,132,1)',
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "rgba(75,192,192,1)",
-      pointRadius: 0,
-      pointHoverRadius: 6,
-      pointHoverBackgroundColor: "rgba(0,0,0,0.7)",
-      pointHoverBorderColor: "rgba(255,255,255,1)",
-      pointHoverBorderWidth: 3
-    }
-  ];
-  public lineChartLegend: boolean = true;
-  public lineChartType: string = 'line';
-
   public chartClicked(e: any): void {
-    console.log(e);
+
   }
 
   public chartHovered(e: any): void {
-    console.log(e);
+
   }
 
+  /**
+   * public prepareChart - Prepares the data for the chart.
+   *
+   * @param  {Array} dataSet description
+   */
   public prepareChart(dataSet) {
     let arrayData = [];
     let arrayLabels = [];
@@ -115,6 +144,10 @@ export class SymbolComponent implements OnInit {
     this.lineChartLabels = arrayLabels;
   }
 
+  /**
+   * public sendComment - Generates a Comment.  
+   *
+   */
   public sendComment() {
     let comment = new CommentSymbol(this.symbol.id, new Date(), this.comment);
     this.symbolActions.addComment(comment);

@@ -7,13 +7,12 @@ import { Component, OnInit, Input  } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  @Input() symbols;
+  @Input() symbols: Array<any>;
 
   constructor() { }
 
   ngOnInit() {
-    console.log("asdfasdfasdf")
-    console.log(this.symbols)
+
   }
 
 }

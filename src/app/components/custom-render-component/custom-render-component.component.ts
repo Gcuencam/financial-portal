@@ -17,7 +17,6 @@ export class CustomRenderComponent implements ViewCell, OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.value)
     this.renderValue = this.value.toString();
   }
 

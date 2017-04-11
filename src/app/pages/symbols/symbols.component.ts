@@ -97,6 +97,10 @@ export class SymbolsComponent implements OnInit {
 
   }
 
+  /**
+   * private getCurrencyLength - Calculates the length of the currencies.
+   *
+   */
   private getCurrencyLength() {
 
     let symbolsUSD = this.symbolArrayList.filter(symbol => {
@@ -119,7 +123,7 @@ export class SymbolsComponent implements OnInit {
   }
 
   /**
-   * private getRiskLength - description
+   * private getRiskLength - Calculates the length of the risks.
    *
    */
   private getRiskLength() {
