@@ -31,7 +31,7 @@ export class AjaxService {
     headers.append('JsonStub-User-Key', '9facef2e-9583-4a83-9f08-c87159f1c113');
     headers.append('JsonStub-Project-Key', '6ed070c1-b334-4612-8fa8-169c5e45baef');
 
-    return this.http.get(this.buildUrl(endpoint), {headers: headers});
+    return this.http.get(this.buildUrl(endpoint), { headers: headers });
 
   }
 

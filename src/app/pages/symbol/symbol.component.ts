@@ -25,12 +25,12 @@ export class SymbolComponent implements OnInit {
   constructor(private route: ActivatedRoute, private symbolActions: SymbolActions) {
     this.symbols.subscribe(symbols => {
       const {symbolsList, symbol} = symbols.toJS();
-        this.symbol = symbol;
-        this.symbolsList = symbolsList;
-        if(symbol.prices.length > 0) {
-          this.prepareChart(symbol.prices);
-          this.comments = this.symbolActions.getComments(this.symbol);
-        }
+      this.symbol = symbol;
+      this.symbolsList = symbolsList;
+      if (symbol.prices.length > 0) {
+        this.prepareChart(symbol.prices);
+        this.comments = this.symbolActions.getComments(this.symbol);
+      }
     });
     this.comment = "";
   }
@@ -40,14 +40,14 @@ export class SymbolComponent implements OnInit {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.getDetailData(this.id);
     });
-    if(this.symbolsList.length == 0) {
+    if (this.symbolsList.length == 0) {
       this.symbolActions._fetch();
     }
   }
 
-  private getDetailData(id){
+  private getDetailData(id) {
     this.symbolActions._fetchDetail(id).subscribe(result =>
-        this.setData(result.json())
+      this.setData(result.json())
     );
   }
 
@@ -66,19 +66,19 @@ export class SymbolComponent implements OnInit {
 
   }
 
-  private formSector(sector){
+  private formSector(sector) {
 
   }
 
   // lineChart
-  public lineChartData:Array<any> = [
-      {data: [], label: 'Precio'},
-    ];
-  public lineChartLabels:Array<any> = [];
-  public lineChartOptions:any = {
+  public lineChartData: Array<any> = [
+    { data: [], label: 'Precio' },
+  ];
+  public lineChartLabels: Array<any> = [];
+  public lineChartOptions: any = {
     responsive: true
   };
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(255,99,132,0.2)',
       borderColor: 'rgba(255,99,132,1)',
@@ -91,21 +91,21 @@ export class SymbolComponent implements OnInit {
       pointHoverBorderWidth: 3
     }
   ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+  public lineChartLegend: boolean = true;
+  public lineChartType: string = 'line';
 
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 
   public prepareChart(dataSet) {
     let arrayData = [];
     let arrayLabels = [];
-    for (let data of dataSet){
+    for (let data of dataSet) {
       let date = new Date(data['date']);
       let formatDate = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
       arrayData.push(data['value']);

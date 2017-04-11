@@ -1,15 +1,14 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-md-2 sidebar">
-            <div class="row">
-                <app-sidebar [symbols]="symbolsList"></app-sidebar>
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-10 col-md-offset-2">
-            <div class="row">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-2 sidebar">
+      <div class="row">
+        <app-sidebar [symbols]="symbolsList"></app-sidebar>
+      </div>
     </div>
-
+    <div class="col-xs-12 col-md-10 col-md-offset-2">
+      <div class="row">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>

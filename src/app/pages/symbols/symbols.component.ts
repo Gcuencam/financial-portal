@@ -72,20 +72,20 @@ export class SymbolsComponent implements OnInit {
   private symbolList: LocalDataSource;
   private symbolArrayList: Array<any>;
 
-  public symbolsCurrencyChart:string[] = ['USD', 'JPY', 'EUR'];
-  public symbolsCurrencyChartData:number[] = [];
-  public symbolsCurrencyChartType:string = 'doughnut';
+  public symbolsCurrencyChart: string[] = ['USD', 'JPY', 'EUR'];
+  public symbolsCurrencyChartData: number[] = [];
+  public symbolsCurrencyChartType: string = 'doughnut';
 
-  public symbolsRiskChart:string[] = ['Equity', 'Balanced'];
-  public symbolsRiskChartData:number[] = [];
-  public symbolsRiskChartType:string = 'doughnut';
+  public symbolsRiskChart: string[] = ['Equity', 'Balanced'];
+  public symbolsRiskChartData: number[] = [];
+  public symbolsRiskChartType: string = 'doughnut';
 
   constructor(private symbolActions: SymbolActions) {
     this.symbols.subscribe(symbols => {
       const {symbolsList, symbol} = symbols.toJS();
       this.symbolList = new LocalDataSource(symbolsList);
       this.symbolArrayList = symbolsList;
-      if(this.symbolArrayList.length > 0){
+      if (this.symbolArrayList.length > 0) {
         this.getCurrencyLength();
         this.getRiskLength();
       }
@@ -97,17 +97,17 @@ export class SymbolsComponent implements OnInit {
 
   }
 
- private getCurrencyLength() {
+  private getCurrencyLength() {
 
-    let symbolsUSD = this.symbolArrayList.filter(symbol =>{
+    let symbolsUSD = this.symbolArrayList.filter(symbol => {
       return symbol.currency == "USD";
     });
 
-    let symbolsJPY = this.symbolArrayList.filter(symbol =>{
+    let symbolsJPY = this.symbolArrayList.filter(symbol => {
       return symbol.currency == "JPY";
     });
 
-    let symbolsEUR = this.symbolArrayList.filter(symbol =>{
+    let symbolsEUR = this.symbolArrayList.filter(symbol => {
       return symbol.currency == "EUR";
     });
 
@@ -124,11 +124,11 @@ export class SymbolsComponent implements OnInit {
    */
   private getRiskLength() {
 
-    let symbolsEquity = this.symbolArrayList.filter(symbol =>{
+    let symbolsEquity = this.symbolArrayList.filter(symbol => {
       return symbol.risk_family == "Equity";
     });
 
-    let symbolsBalanced = this.symbolArrayList.filter(symbol =>{
+    let symbolsBalanced = this.symbolArrayList.filter(symbol => {
       return symbol.risk_family == "Balanced";
     });
 
