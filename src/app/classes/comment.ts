@@ -8,6 +8,7 @@ export class CommentSymbol {
   private _comment: String;
   private _fecha: String;
   private _hora: String;
+  private _disabled: Boolean;
 
   constructor(symbolId: number, date: Date, comment: String) {
     this._id = UUID.UUID();
@@ -16,6 +17,7 @@ export class CommentSymbol {
     this._comment = comment;
     this._fecha = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
     this._hora = date.getHours() + ":" + date.getMinutes();
+    this._disabled = true;
   }
 
   get id(): UUID {
@@ -65,5 +67,14 @@ export class CommentSymbol {
 
   set hora(value: String) {
     this._hora = value;
+  }
+
+
+  get disabled(): Boolean {
+    return this._disabled;
+  }
+
+  set disabled(value: Boolean) {
+    this._disabled = value;
   }
 }

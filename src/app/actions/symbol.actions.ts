@@ -21,7 +21,6 @@ export class SymbolActions {
   }
 
   setSymbol(symbol) {
-    console.log(symbol)
     this.redux.dispatch({ type: SYMBOL_ACTIONS.SET_SYMBOL, payload: symbol });
   }
 
@@ -56,11 +55,19 @@ export class SymbolActions {
 
   removeComment(commentId) {
     let comments = this.localStorageService.get<Array<any>>('comments');
-    console.log(comments)
     comments = comments.filter(function(_comment) {
       return _comment._id !== commentId;
     });
-    console.log(comments)
+    this.localStorageService.set('comments', comments);
+  }
+
+  setComments(comment) {
+    let comments = this.localStorageService.get<Array<any>>('comments');
+    comments.filter(function(_comment) {
+      if(_comment._id == comment._id) {
+        _comment._comment = comment._comment;
+      }
+    });
     this.localStorageService.set('comments', comments);
   }
 

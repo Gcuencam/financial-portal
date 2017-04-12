@@ -35,7 +35,10 @@
           <i class="icofont icofont-ui-close" (click)="deleteComment(comment._id)"></i>
           <p><span>Fecha: </span><span>{{comment._fecha}}</span></p>
           <p><span>Hora: </span><span>{{comment._hora}}</span></p>
-          <textarea disabled="disabled" value="{{comment._comment}}"></textarea>
+          <div class="message_box">
+            <i class="icofont icofont-edit" (click)="enableEdit(comment)"></i>
+            <textarea [disabled]="comment._disabled" value="{{comment._comment}}" [(ngModel)]="comment._comment"></textarea>
+          </div>
       </div>
       <div class="col-xs-12" class="textarea_comment">
         <textarea [(ngModel)]="comment" placeholder="Introduzca aquí su comentario." rows="5"></textarea>
@@ -45,4 +48,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

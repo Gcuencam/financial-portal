@@ -176,4 +176,11 @@ export class SymbolComponent implements OnInit {
     this.comments = this.symbolActions.getComments(this.symbol);
   }
 
+  public enableEdit(comment){
+    if(!comment._disabled){
+      this.symbolActions.setComments(comment);
+    }
+    comment._disabled = !comment._disabled;
+  }
+
 }

@@ -38,20 +38,29 @@ textarea
   &:nth-child(even)
   textarea
     background-color: rgba(0,0,0,0)
+    border: 2px solid lighten($color-primary-3,30%)
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
     padding: 10px 20px
-    border: none
     cursor: pointer
-    transition: all 0.5s ease
-    &:hover
-      background-color:  lighten($color-primary-3,60%)
+    transition: all 0.2s ease
+    &:disabled
+      border: 2px solid lighten($color-primary-3,80%)
   i
     position: absolute
     transition: all 0.5s ease
-    right: 40px
+    right: 45px
     color: $color-primary-3
     cursor: pointer
     &:hover
       color:  lighten($color-primary-3,30%)
+  .message_box
+    position: relative
+    .icofont-edit
+      top: 10px
+      right: 10px
+      font-size: 1.2em
 
 .spinner
   width: 50px
