@@ -21,3 +21,19 @@ $ yarn install
 $ ng serve
 ```
 Navigate to `http://localhost:4200/`.
+
+# Screenshots
+
+### Desktop
+
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Captura1.PNG)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Captura2.PNG)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Captura3.PNG)
+
+### Mobile
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Screenshot_2017-04-11-23-22-27.png)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Screenshot_2017-04-11-23-22-36.png)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Screenshot_2017-04-11-23-22-47.png)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Screenshot_2017-04-11-23-22-54.png)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Screenshot_2017-04-11-23-23-07.png)
+![alt tag](https://github.com/Gcuencam/financial-portal/blob/master/src/assets/capturas/Screenshot_2017-04-11-23-23-23.png)
