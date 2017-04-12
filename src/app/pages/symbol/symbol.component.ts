@@ -161,7 +161,7 @@ export class SymbolComponent implements OnInit {
   }
 
   /**
-   * public sendComment - Generates a Comment.  
+   * public sendComment - Generates a Comment.
    *
    */
   public sendComment() {
@@ -171,11 +171,19 @@ export class SymbolComponent implements OnInit {
 
   }
 
+  /**
+   * public deleteComment - Deletes a Comment.
+   *
+   */
   public deleteComment(commentId) {
     this.symbolActions.removeComment(commentId);
     this.comments = this.symbolActions.getComments(this.symbol);
   }
 
+  /**
+   * public enableEdit - Enable disable texarea and edit a Comment.
+   *
+   */
   public enableEdit(comment){
     if(!comment._disabled){
       this.symbolActions.setComments(comment);
